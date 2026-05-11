@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أدعية ليوم عرفة وليلة القدر وغيرها من مواضع الدعاء المأثورة | من الكتاب والسنة</title>
+    <title>صدقة جارية | أدعية من الكتاب والسنة</title>
+<meta name="description" content="موقع صدقة جارية يجمع صحيح الأدعية من القرآن الكريم والسنة النبوية بأسلوب بسيط وخالٍ من الإعلانات.">
+<meta name="keywords" content="أدعية، قرآن، سنة، صدقة جارية، دعاء، أذكار">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -1262,6 +1264,24 @@ localStorage.setItem('last-visit', NOW);
     }
 
 });
+<div style="text-align: center; margin-top: 20px;">
+    <button onclick="shareLink()" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        انشر تؤجر (مشاركة الموقع)
+    </button>
+</div>
+
+<script>
+function shareLink() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'موقع صدقة جارية',
+            text: 'أدعية من الكتاب والسنة النبوية - بدون إعلانات',
+            url: window.location.href
+        });
+    } else {
+        alert("انسخ الرابط وانشره: " + window.location.href);
+    }
+}
 </script>
 </body>
 </html>
