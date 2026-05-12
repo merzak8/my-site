@@ -4,1284 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صدقة جارية | أدعية من الكتاب والسنة</title>
-<meta name="description" content="موقع صدقة جارية يجمع صحيح الأدعية من القرآن الكريم والسنة النبوية بأسلوب بسيط وخالٍ من الإعلانات.">
-<meta name="keywords" content="أدعية، قرآن، سنة، صدقة جارية، دعاء، أذكار">
+    <meta name="description" content="موقع صدقة جارية يجمع صحيح الأدعية من القرآن الكريم والسنة النبوية بأسلوب بسيط وخالٍ من الإعلانات.">
+    <meta name="keywords" content="أدعية، قرآن، سنة، صدقة جارية، دعاء، أذكار">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        /* =============================
-           متغيرات الألوان — النمط الفاتح والداكن
-        ============================= */
         :root {
-            --gold-primary: #D4AF37;
-            --gold-dark:    #AA8A2E;
-            --gold-light:   #f0d060;
-            --bg-site:      #F4F1EA;
-            --bg-card:      #FFFFFF;
-            --text-main:    #1A1A1A;
-            --text-muted:   #666666;
-            --bar-bg:       #AA8A2E;
-            --bar-border:   #D4AF37;
-            --shadow:       rgba(0,0,0,0.12);
-            --progress-bg:  #e0d9c8;
+            --gold-primary: #D4AF37; --gold-dark: #AA8A2E; --gold-light: #f0d060;
+            --bg-site: #F4F1EA; --bg-card: #FFFFFF; --text-main: #1A1A1A;
+            --text-muted: #666666; --bar-bg: #AA8A2E; --bar-border: #D4AF37;
+            --shadow: rgba(0,0,0,0.12); --progress-bg: #e0d9c8;
         }
-
         [data-theme="dark"] {
-            --bg-site:    #0f1117;
-            --bg-card:    #1c1f2b;
-            --text-main:  #f0e6cc;
-            --text-muted: #a89878;
-            --bar-bg:     #0c0e14;
-            --bar-border: #AA8A2E;
-            --shadow:     rgba(0,0,0,0.5);
-            --progress-bg:#2a2d3a;
+            --bg-site: #0f1117; --bg-card: #1c1f2b; --text-main: #f0e6cc;
+            --text-muted: #a89878; --bar-bg: #0c0e14; --bar-border: #AA8A2E;
+            --shadow: rgba(0,0,0,0.5); --progress-bg: #2a2d3a;
         }
 
-        /* =============================
-           إعادة تعيين واعدادات عامة
-        ============================= */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
-            font-family: 'Amiri', serif;
-            background-color: var(--bg-site);
-            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 56px;
-            padding-bottom: 60px;
-            transition: background-color 0.4s ease, color 0.4s ease;
+            font-family: 'Amiri', serif; background-color: var(--bg-site);
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+            padding-top: 80px; padding-bottom: 80px; transition: 0.4s;
         }
 
-        /* =============================
-           شريط التقدم
-        ============================= */
-        #progress-bar-wrapper {
-            position: fixed;
-            top: 56px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--progress-bg);
-            z-index: 9998;
-            transition: background 0.4s;
-        }
-        #progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
-            transition: width 0.5s cubic-bezier(.4,0,.2,1);
-            width: 0%;
-        }
+        /* شريط التقدم */
+        #progress-bar-wrapper { position: fixed; top: 56px; left: 0; width: 100%; height: 4px; background: var(--progress-bg); z-index: 9998; }
+        #progress-bar { height: 100%; background: linear-gradient(90deg, var(--gold-dark), var(--gold-light)); width: 0%; transition: 0.3s; }
 
-        /* =============================
-           الشريط المتحرك الموحد
-        ============================= */
-        .marquee-wrapper {
-            width: 100%;
-            background-color: var(--bar-bg);
-            border-top: 2px solid var(--bar-border);
-            border-bottom: 2px solid var(--bar-border);
-            padding: 10px 0;
-            overflow: hidden;
-            display: flex;
-            position: fixed;
-            left: 0;
-            z-index: 99999;
-            will-change: transform;
-            transition: background-color 0.4s;
-        }
-        .top-bar    { top: 0; }
-        .bottom-bar { bottom: 0; }
+        /* الشريط المتحرك */
+        .marquee-wrapper { width: 100%; background: var(--bar-bg); border-y: 2px solid var(--bar-border); padding: 10px 0; overflow: hidden; position: fixed; z-index: 9999; }
+        .top-bar { top: 0; }
+        .marquee-content { display: flex; white-space: nowrap; animation: scroll 25s linear infinite; }
+        .marquee-content span { padding-left: 100px; color: #fff; font-family: 'Cairo'; font-size: 0.9rem; }
+        @keyframes scroll { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
-        .marquee-content {
-            display: flex;
-            white-space: nowrap;
-            animation: continuous-scroll 22s linear infinite;
-        }
-        .marquee-content span {
-            display: inline-block;
-            padding-left: 120px;
-            color: #fff;
-            font-family: 'Cairo', sans-serif;
-            font-size: clamp(0.82rem, 2vw, 1.05rem);
-            font-weight: 600;
-        }
-        @keyframes continuous-scroll {
-            0%   { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-        }
+        header { text-align: center; margin-bottom: 20px; position: relative; width: 100%; max-width: 700px; }
+        .main-title { font-family: 'Reem Kufi'; color: var(--gold-dark); font-size: 2rem; }
+        
+        #theme-toggle { position: absolute; left: 20px; top: 0; background: var(--bg-card); border: 1.5px solid var(--gold-primary); border-radius: 20px; padding: 5px 10px; cursor: pointer; color: var(--gold-primary); z-index: 100; }
 
-        /* =============================
-           الهيدر
-        ============================= */
-        header {
-            text-align: center;
-            padding: 28px 20px 10px;
-            position: relative;
-            width: 100%;
-        }
-        .main-title {
-            font-family: 'Reem Kufi', sans-serif;
-            color: var(--gold-dark);
-            font-size: clamp(1.6rem, 5vw, 2.4rem);
-            letter-spacing: 0.03em;
-        }
-        .sub-title {
-            font-family: 'Cairo', sans-serif;
-            color: var(--text-muted);
-            font-size: clamp(0.78rem, 2vw, 0.92rem);
-            margin-top: 4px;
-            transition: color 0.4s;
-        }
+        .navigation-wrapper { display: flex; align-items: center; justify-content: center; gap: 15px; width: 100%; max-width: 900px; padding: 0 20px; }
+        .swiper { width: 100%; max-width: 600px; background: var(--bg-card); border-radius: 18px; box-shadow: 0 10px 30px var(--shadow); border: 1px solid rgba(212,175,55,0.2); }
+        .swiper-slide { padding: 40px 20px; min-height: 350px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        
+        .dua-content { font-size: 1.5rem; line-height: 1.8; color: var(--text-main); margin: 20px 0; flex-grow: 1; }
+        .dua-source { font-family: 'Cairo'; font-size: 0.8rem; background: var(--gold-primary); color: #fff; padding: 3px 12px; border-radius: 5px; }
+        
+        .nav-btn { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--gold-primary); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--gold-dark); font-weight: bold; background: var(--bg-card); transition: 0.3s; z-index: 10; }
+        .nav-btn:hover { background: var(--gold-primary); color: #fff; }
 
-        /* =============================
-           زر الوضع الليلي — محسّن
-        ============================= */
-        #theme-toggle {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--bg-card);
-            border: 1.5px solid var(--gold-primary);
-            border-radius: 50px;
-            width: 52px;
-            height: 28px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            padding: 3px;
-            transition: background 0.4s, border-color 0.4s, box-shadow 0.2s, transform 0.15s;
-            box-shadow: 0 2px 8px var(--shadow);
-        }
-        #theme-toggle:hover {
-            box-shadow: 0 0 0 3px rgba(212,175,55,0.25), 0 2px 8px var(--shadow);
-            transform: translateY(-50%) scale(1.05);
-        }
-        #theme-toggle:active {
-            transform: translateY(-50%) scale(0.95);
-        }
-        #theme-toggle .knob {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--gold-primary);
-            transition: transform 0.35s cubic-bezier(.4,0,.2,1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-        }
-        [data-theme="dark"] #theme-toggle .knob {
-            transform: translateX(-24px);
-        }
-
-        /* =============================
-           مجموعة التنقل + السلايدر
-        ============================= */
-        .navigation-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            margin: 10px 0;
-            padding: 0 10px;
-        }
-        .swiper-container-wrapper {
-            width: 95%;
-            max-width: 700px;
-        }
-
-        /* =============================
-           الشريحة (البطاقة)
-        ============================= */
-        .swiper-slide {
-            background: var(--bg-card);
-            border-radius: 18px;
-            box-shadow: 0 10px 35px var(--shadow);
-            padding: clamp(20px, 4vw, 35px);
-            min-height: 380px;
-            max-height: 72vh;
-            display: grid;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            transition: background 0.4s;
-            border: 1px solid rgba(212,175,55,0.15);
-            /* دعم perspective للتأثير ثلاثي الأبعاد */
-            will-change: transform, opacity;
-            backface-visibility: hidden;
-        }
-
-        /* =============================
-           ── تأثير انتقال أنيق عبر CSS ──
-        ============================= */
-
-        /* الشريحة الفعّالة: تظهر كاملة */
-        .swiper-slide-active {
-            opacity: 1 !important;
-        }
-
-        /* الشرائح غير الفعّالة: مخفية ولا تعترض الضغط */
-        .swiper-slide:not(.swiper-slide-active) {
-            pointer-events: none;
-        }
-
-        /* ── ظهور محتوى الشريحة الفعّالة ── */
-        .swiper-slide-active .dua-content {
-            animation: contentReveal 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
-            animation-delay: 0.22s;
-        }
-        .swiper-slide-active .category-tag {
-            animation: contentReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-            animation-delay: 0.10s;
-        }
-        .swiper-slide-active .dua-source {
-            animation: contentReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-            animation-delay: 0.32s;
-        }
-        .swiper-slide-active .tasbih-wrapper {
-            animation: contentReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-            animation-delay: 0.38s;
-        }
-
-        @keyframes contentReveal {
-            from { opacity: 0; transform: translateY(14px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* =============================
-           البشرائع (Tags) — مستطيلة بزوايا منحنية
-        ============================= */
-        .page-counter {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-            font-family: 'Cairo', sans-serif;
-            color: var(--gold-primary);
-            font-weight: 700;
-            background: ;
-            border: 1.5px solid var(--gold-primary);
-            padding: 3px 10px;
-            border-radius: 8px;
-            font-size: 0.78rem;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
-
-        /* أزرار الإجراءات (نسخ + واتساب) */
-        .slide-actions {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            display: flex;
-            gap: 6px;
-        }
-
-        /* =============================
-           أزرار الإجراءات — محسّنة
-        ============================= */
-        .action-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 8px;
-            border: 1.5px solid var(--gold-primary);
-            background: transparent;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            transition:
-                background 0.22s ease,
-                transform 0.15s ease,
-                box-shadow 0.2s ease,
-                border-color 0.2s ease;
-            color: var(--gold-dark);
-            position: relative;
-            overflow: hidden;
-        }
-        .action-btn::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle, rgba(212,175,55,0.35) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            border-radius: inherit;
-        }
-        .action-btn:hover {
-            background: var(--gold-primary);
-            color: #fff;
-            transform: scale(1.08);
-            box-shadow: 0 4px 14px rgba(170,138,46,0.35);
-            border-color: var(--gold-light);
-        }
-        .action-btn:hover::after { opacity: 1; }
-        .action-btn:active {
-            transform: scale(0.92);
-            box-shadow: 0 2px 6px rgba(170,138,46,0.2);
-        }
-        .action-btn:focus-visible {
-            outline: 2px solid var(--gold-light);
-            outline-offset: 2px;
-        }
-        .action-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* تلميح النسخ */
-        .copy-tooltip {
-            position: absolute;
-            top: 52px;
-            right: 14px;
-            background: #2a2a2a;
-            color: #fff;
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.72rem;
-            padding: 5px 12px;
-            border-radius: 8px;
-            border: 1px solid var(--gold-dark);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s, transform 0.25s;
-            white-space: nowrap;
-            z-index: 10;
-            transform: translateY(-4px);
-        }
-        .copy-tooltip.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =============================
-           وسم الفئة
-        ============================= */
-        .category-tag {
-            font-family: 'Reem Kufi', sans-serif;
-            color: var(--gold-dark);
-            font-size: clamp(0.9rem, 2.8vw, 1.15rem);
-            text-align: center;
-            padding: 6px 18px;
-            margin: 28px auto 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(212,175,55,0.4);
-            background: rgba(212,175,55,0.07);
-            display: inline-block;
-            align-self: center;
-            letter-spacing: 0.02em;
-            transition: background 0.3s;
-        }
-
-        .dua-content {
-            font-size: clamp(1.1rem, 3.5vw, 1.65rem);
-            line-height: 1.9;
-            text-align: center;
-            color: var(--text-main);
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px 0;
-            transition: color 0.4s;
-        }
-
-        /* =============================
-           بشرائع المصدر
-        ============================= */
-        .dua-source {
-            font-family: 'Cairo', sans-serif;
-            font-size: clamp(0.72rem, 2vw, 0.85rem);
-            color: #fff;
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
-            text-align: center;
-            padding: 4px 14px;
-            border-radius: 8px;
-            opacity: 0.92;
-            margin: 6px auto 0;
-            display: inline-block;
-            align-self: center;
-            letter-spacing: 0.01em;
-        }
-
-        /* عداد التسبيح */
-        .tasbih-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        .tasbih-btn {
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
-            border: none;
-            border-radius: 50%;
-            width: 62px;
-            height: 62px;
-            color: #fff;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 14px rgba(170,138,46,0.45);
-            transition: transform 0.12s, box-shadow 0.2s, background 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            line-height: 1.1;
-        }
-        .tasbih-btn:hover {
-            box-shadow: 0 6px 20px rgba(170,138,46,0.6);
-            transform: scale(1.06);
-        }
-        .tasbih-btn:active {
-            transform: scale(0.92);
-            box-shadow: 0 2px 8px rgba(170,138,46,0.3);
-        }
-        .tasbih-btn:focus-visible {
-            outline: 2px solid var(--gold-light);
-            outline-offset: 3px;
-        }
-        .tasbih-btn .t-count { font-size: 1.4rem; }
-        .tasbih-btn .t-label { font-size: 0.55rem; opacity: 0.85; }
-        .tasbih-reset {
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            background: none;
-            border: 1px solid transparent;
-            border-radius: 6px;
-            padding: 2px 8px;
-            cursor: pointer;
-            text-decoration: underline;
-            transition: color 0.2s, background 0.2s, border-color 0.2s;
-        }
-        .tasbih-reset:hover {
-            color: var(--gold-dark);
-            background: rgba(212,175,55,0.08);
-            border-color: rgba(212,175,46,0.3);
-        }
-        .tasbih-reset:active { transform: scale(0.95); }
-        .tasbih-goal {
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            background: rgba(212,175,55,0.08);
-            padding: 2px 10px;
-            border-radius: 6px;
-            border: 1px solid rgba(212,175,55,0.2);
-        }
-
-        /* =============================
-           أزرار التنقل الجانبية
-        ============================= */
-        .nav-btn {
-            width: 50px;
-            height: 50px;
-            background: var(--bg-card);
-            border: 2px solid var(--gold-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--gold-dark);
-            font-size: 1.3rem;
-            transition: background 0.25s, color 0.25s, transform 0.15s, box-shadow 0.2s;
-            flex-shrink: 0;
-            box-shadow: 0 3px 10px var(--shadow);
-            user-select: none;
-        }
-        .nav-btn:hover {
-            background: var(--gold-primary);
-            color: #fff;
-            transform: scale(1.08);
-            box-shadow: 0 6px 18px rgba(170,138,46,0.4);
-        }
-        .nav-btn:active {
-            transform: scale(0.93);
-            box-shadow: 0 2px 6px rgba(170,138,46,0.2);
-        }
-        .nav-btn:focus-visible {
-            outline: 2px solid var(--gold-light);
-            outline-offset: 3px;
-        }
-        .nav-btn.swiper-button-disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        /* =============================
-           الترقيم (pagination)
-        ============================= */
-        .swiper-pagination { margin-top: 10px !important; position: static !important; }
-        .swiper-pagination-bullet-active { background: var(--gold-primary) !important; }
-
-        /* =============================
-           زر المشاركة الرئيسي
-        ============================= */
-        .share-fab {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            z-index: 9990;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 8px;
-        }
-
-        .share-main-btn {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
-            border: none;
-            color: #fff;
-            font-size: 1.4rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 20px rgba(170,138,46,0.5);
-            transition: transform 0.2s, box-shadow 0.2s, border-radius 0.3s;
-        }
-        .share-main-btn:hover {
-            transform: scale(1.1) rotate(-5deg);
-            box-shadow: 0 8px 28px rgba(170,138,46,0.65);
-        }
-        .share-main-btn:active { transform: scale(0.93); }
-        .share-main-btn.open { border-radius: 50%; transform: rotate(45deg); }
-
-        .share-options {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            align-items: flex-end;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(12px) scale(0.92);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-        }
-        .share-options.visible {
-            opacity: 1;
-            pointer-events: all;
-            transform: translateY(0) scale(1);
-        }
-
-        .share-option-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: #fff;
-            white-space: nowrap;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
-            transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
-        }
-        .share-option-btn:hover {
-            transform: translateX(-4px) scale(1.04);
-            box-shadow: 0 5px 18px rgba(0,0,0,0.3);
-            filter: brightness(1.1);
-        }
-        .share-option-btn:active { transform: scale(0.95); }
-
-        .share-option-btn.whatsapp { background: #25D366; }
-        .share-option-btn.twitter  { background: #1DA1F2; }
-        .share-option-btn.telegram { background: #229ED9; }
-        .share-option-btn.copy-link{ background: var(--gold-dark); }
-        .share-option-btn.native   { background: #6c5ce7; }
-
-        .share-option-btn .s-icon { font-size: 1.1rem; }
-
-        .share-backdrop {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 9985;
-        }
-        .share-backdrop.active { display: block; }
-
-        .link-copy-toast {
-            position: fixed;
-            bottom: 145px;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            background: #2a2a2a;
-            color: #fff;
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.8rem;
-            padding: 8px 18px;
-            border-radius: 10px;
-            border: 1px solid var(--gold-dark);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s, transform 0.25s;
-            z-index: 99999;
-            white-space: nowrap;
-        }
-        .link-copy-toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* =============================
-           الفوتر
-        ============================= */
-        footer {
-            font-family: 'Cairo', sans-serif;
-            font-size: clamp(0.72rem, 2vw, 0.85rem);
-            color: var(--text-muted);
-            text-align: center;
-            padding: 8px 20px;
-            transition: color 0.4s;
-        }
-
-        /* =============================
-           الاستجابة للجوال
-        ============================= */
-        @media (max-width: 600px) {
-            .nav-btn { display: none; }
-            .swiper-container-wrapper { width: 100%; }
-            body { padding-top: 50px; padding-bottom: 56px; }
-            .marquee-content span { padding-left: 60px; }
-            .share-fab { left: 14px; bottom: 75px; }
-        }
+        /* زر المشاركة */
+        .share-btn-fixed { position: fixed; bottom: 80px; left: 20px; width: 55px; height: 55px; background: var(--gold-dark); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 9999; border: none; }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
-<!-- الشريط المتحرك العلوي -->
-<div class="marquee-wrapper top-bar" role="marquee" aria-label="رسالة لصاحب الموقع">
+<div class="marquee-wrapper top-bar">
     <div class="marquee-content">
-        <span>اللهم ارزق صاحب هذا العمل الهداية والثبات، وبارك في رزقه، واجعل له من كل خير نصيباً.</span>
-        <span>اللهم ارزق صاحب هذا العمل الهداية والثبات، وبارك في رزقه، واجعل له من كل خير نصيباً.</span>
         <span>اللهم ارزق صاحب هذا العمل الهداية والثبات، وبارك في رزقه، واجعل له من كل خير نصيباً.</span>
         <span>اللهم ارزق صاحب هذا العمل الهداية والثبات، وبارك في رزقه، واجعل له من كل خير نصيباً.</span>
     </div>
 </div>
 
-<!-- شريط التقدم -->
-<div id="progress-bar-wrapper" role="progressbar" aria-label="مؤشر التقدم">
-    <div id="progress-bar"></div>
-</div>
+<div id="progress-bar-wrapper"><div id="progress-bar"></div></div>
 
-<!-- الهيدر -->
 <header>
-    <button id="theme-toggle" aria-label="تبديل الوضع الليلي/النهاري">
-        <span class="knob">🌙</span>
-    </button>
+    <button id="theme-toggle">🌙</button>
     <h1 class="main-title">جوامع الدعاء</h1>
-    <div class="sub-title">أدعية ليوم عرفة وليلة القدر وغيرها من مواضع الدعاء المأثورة | من الكتاب والسنة</div>
 </header>
 
-<!-- السلايدر -->
 <div class="navigation-wrapper">
-    <div class="nav-btn" id="nextBtn" role="button" aria-label="الدعاء التالي" tabindex="0">❯</div>
-    <div class="swiper-container-wrapper">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-
-                <!-- 1 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">١ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">1</span>
-                    <div class="dua-content">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ.</div>
-                    <div class="dua-source">📖 البخاري (3370) ومسلم (406)</div>
-                </div>
-
-                <!-- 2 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">٢ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">2</span>
-                    <div class="dua-content">اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطعتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي فَاغْفِرْ لِي، فَإِنَّهُ لا يَغْفِرُ الذُّنُوبَ إِلا أَنْتَ.</div>
-                    <div class="dua-source">📖 البخاري (6306)</div>
-                </div>
-
-                <!-- 3 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">٣ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">3</span>
-                    <div class="dua-content">رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ.</div>
-                    <div class="dua-source">📖 سورة الأعراف (23)</div>
-                </div>
-
-                <!-- 4 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">٤ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">4</span>
-                    <div class="dua-content">الْحَمْدُ لِلَّهِ وَسَلَامٌ عَلَىٰ عِبَادِهِ الَّذِينَ اصْطَفَىٰ.</div>
-                    <div class="dua-source">📖 سورة النمل (59)</div>
-                </div>
-
-                <!-- 5 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">٥ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">5</span>
-                    <div class="dua-content">الْحَمْدُ لِلَّهِ الَّذِي لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ وَلَهُ الْحَمْدُ فِي الْآخِرَةِ ۚ وَهُوَ الْحَكِيمُ الْخَبِيرُ.</div>
-                    <div class="dua-source">📖 سورة سبأ (1)</div>
-                </div>
-
-                <!-- 6 — تسبيح -->
-                <div class="swiper-slide" data-tasbih="true" data-goal="100">
-                    <div class="page-counter">٦ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">6</span>
-                    <div class="dua-content">سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ.</div>
-                    <div class="dua-source">📖 مسلم (2695)</div>
-                    <div class="tasbih-wrapper">
-                        <button class="tasbih-btn" aria-label="عداد التسبيح">
-                            <span class="t-count">0</span>
-                            <span class="t-label">انقر للتسبيح</span>
-                        </button>
-                        <span class="tasbih-goal">الهدف: 100 مرة</span>
-                        <button class="tasbih-reset">إعادة تعيين</button>
-                    </div>
-                </div>
-
-                <!-- 7 — تسبيح -->
-                <div class="swiper-slide" data-tasbih="true" data-goal="100">
-                    <div class="page-counter">٧ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">7</span>
-                    <div class="dua-content">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ.</div>
-                    <div class="dua-source">📖 البخاري (6406)</div>
-                    <div class="tasbih-wrapper">
-                        <button class="tasbih-btn" aria-label="عداد التسبيح">
-                            <span class="t-count">0</span>
-                            <span class="t-label">انقر للتسبيح</span>
-                        </button>
-                        <span class="tasbih-goal">الهدف: 100 مرة</span>
-                        <button class="tasbih-reset">إعادة تعيين</button>
-                    </div>
-                </div>
-
-                <!-- 8 — تسبيح -->
-                <div class="swiper-slide" data-tasbih="true" data-goal="100">
-                    <div class="page-counter">٨ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">8</span>
-                    <div class="dua-content">لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ.</div>
-                    <div class="dua-source">📖 البخاري ومسلم</div>
-                    <div class="tasbih-wrapper">
-                        <button class="tasbih-btn" aria-label="عداد التسبيح">
-                            <span class="t-count">0</span>
-                            <span class="t-label">انقر للتسبيح</span>
-                        </button>
-                        <span class="tasbih-goal">الهدف: 100 مرة</span>
-                        <button class="tasbih-reset">إعادة تعيين</button>
-                    </div>
-                </div>
-
-                <!-- 9 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">٩ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">9</span>
-                    <div class="dua-content">سُبْحَانَ اللهِ وَبِحَمْدِهِ، عَدَدَ خَلْقِهِ وَرِضَا نَفْسِهِ وَزِنَةَ عَرْشِهِ وَمِدَادَ كَلِمَاتِهِ.</div>
-                    <div class="dua-source">📖 مسلم (2726)</div>
-                </div>
-
-                <!-- 10 — تسبيح -->
-                <div class="swiper-slide" data-tasbih="true" data-goal="100">
-                    <div class="page-counter">١٠ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">10</span>
-                    <div class="dua-content">لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.</div>
-                    <div class="dua-source">📖 الترمذي (3585)</div>
-                    <div class="tasbih-wrapper">
-                        <button class="tasbih-btn" aria-label="عداد التسبيح">
-                            <span class="t-count">0</span>
-                            <span class="t-label">انقر للتسبيح</span>
-                        </button>
-                        <span class="tasbih-goal">الهدف: 100 مرة</span>
-                        <button class="tasbih-reset">إعادة تعيين</button>
-                    </div>
-                </div>
-
-                <!-- 11 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">١١ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">11</span>
-                    <div class="dua-content">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ.</div>
-                    <div class="dua-source">📖 سورة البقرة (201)</div>
-                </div>
-
-                <!-- 12 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">١٢ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">12</span>
-                    <div class="dua-content">لَا إِلَهَ إِلَّا اللَّهُ الْعَظِيمُ الْحَلِيمُ، لَا إِلَهَ إِلَّا اللَّهُ رَبُّ الْعَرْشِ الْعَظِيمِ، لَا إِلَهَ إِلَّا اللَّهُ رَبُّ السَّمَوَاتِ، وَرَبُّ الْأَرْضِ، وَرَبُّ الْعَرْشِ الْكَرِيمِ.</div>
-                    <div class="dua-source">📖 البخاري (6346) ومسلم (2730)</div>
-                </div>
-
-                <!-- 13 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">١٣ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">13</span>
-                    <div class="dua-content">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى.</div>
-                    <div class="dua-source">📖 مسلم (2721)</div>
-                </div>
-
-                <!-- 14 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">١٤ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">14</span>
-                    <div class="dua-content">يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ، أَصْلِحْ لِي شَأْنِي كُلَّهُ، وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ.</div>
-                    <div class="dua-source">📖 الحاكم (1/545) وصححه الألباني</div>
-                </div>
-
-                <!-- 15 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">١٥ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">15</span>
-                    <div class="dua-content">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ.</div>
-                    <div class="dua-source">📖 البخاري (6363)</div>
-                </div>
-
-                <!-- 16 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">١٦ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">16</span>
-                    <div class="dua-content">اللَّهُمَّ أَصْلِحْ لِي دِينِي الَّذِي هُوَ عِصْمَةُ أَمْرِي، وَأَصْلِحْ لِي دُنْيَايَ الَّتِي فِيهَا مَعَاشِي، وَأَصْلِحْ لِي آخِرَتِي الَّتِي فِيهَا مَعَادِي، وَاجْعَلِ الْحَيَاةَ زِيَادَةً لِي فِي كُلِّ خَيْرٍ، وَاجْعَلِ الْمَوْتَ رَاحَةً لِي مِنْ كُلِّ شَرٍّ.</div>
-                    <div class="dua-source">📖 مسلم (2720)</div>
-                </div>
-
-                <!-- 17 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">١٧ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">17</span>
-                    <div class="dua-content">رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي أَمْرِي * وَاحْلُلْ عُقْدَةً مِّن لِّسَانِي يَفْقَهُوا قَوْلِي.</div>
-                    <div class="dua-source">📖 سورة طه (25-28)</div>
-                </div>
-
-                <!-- 18 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">١٨ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">18</span>
-                    <div class="dua-content">رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي رَبَّنَا وَتَقَبَّلْ دُعَاءِ * رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ.</div>
-                    <div class="dua-source">📖 سورة إبراهيم (40-41)</div>
-                </div>
-
-                <!-- 19 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">١٩ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">19</span>
-                    <div class="dua-content">لَّا إِلَهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ.</div>
-                    <div class="dua-source">📖 سورة الأنبياء (87)</div>
-                </div>
-
-                <!-- 20 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">٢٠ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">20</span>
-                    <div class="dua-content">اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا.</div>
-                    <div class="dua-source">📖 ابن ماجه (925)</div>
-                </div>
-
-                <!-- 21 -->
-                <div class="swiper-slide">
-                    <div class="page-counter">٢١ / ٢١</div>
-                    <div class="slide-actions">
-                        <button class="action-btn copy-btn" title="نسخ الدعاء" aria-label="نسخ الدعاء">📋</button>
-                        <button class="action-btn wa-btn"   title="مشاركة عبر واتساب" aria-label="مشاركة عبر واتساب">💬</button>
-                    </div>
-                    <div class="copy-tooltip">تم النسخ ✓</div>
-                    <span class="category-tag">21</span>
-                    <div class="dua-content">اللَّهُمَّ إِنِّي أَسْأَلُكَ لَذَّةَ النَّظَرِ إِلَى وَجْهِكَ، وَالشَّوقَ إِلَى لِقَائِكَ فِي غَيْرِ ضَرَّاءَ مُضِرَّةٍ، وَلَا فِتْنَةٍ مُضِلَّةٍ، اللَّهُمَّ زَيِّنَّا بِزِينَةِ الْإِيمَانِ، وَاجْعَلْنَا هُدَاةً مُهْتَدِينَ.</div>
-                    <div class="dua-source">📖 النسائي (1305) وأحمد (18351)</div>
-                </div>
-
-            </div><!-- end swiper-wrapper -->
-            <div class="swiper-pagination"></div>
+    <div class="nav-btn" id="prevBtn">❮</div>
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="dua-content">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ.</div>
+                <div class="dua-source">📖 البخاري ومسلم</div>
+            </div>
+            <div class="swiper-slide">
+                <div class="dua-content">اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطعتُ.</div>
+                <div class="dua-source">📖 سيد الاستغفار</div>
+            </div>
+            <div class="swiper-slide">
+                <div class="dua-content">رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ.</div>
+                <div class="dua-source">📖 سورة الأعراف</div>
+            </div>
         </div>
     </div>
-    <div class="nav-btn" id="prevBtn" role="button" aria-label="الدعاء السابق" tabindex="0">❮</div>
+    <div class="nav-btn" id="nextBtn">❯</div>
 </div>
 
-<!-- زر المشاركة العائم -->
-<div class="share-backdrop" id="shareBackdrop"></div>
-<div class="share-fab" id="shareFab">
-    <div class="share-options" id="shareOptions">
-        <button class="share-option-btn whatsapp" id="shareWa">
-            <span class="s-icon">💬</span> واتساب
-        </button>
-        <button class="share-option-btn twitter" id="shareTwitter">
-            <span class="s-icon">🐦</span> تويتر / X
-        </button>
-        <button class="share-option-btn telegram" id="shareTelegram">
-            <span class="s-icon">✈️</span> تيليغرام
-        </button>
-        <button class="share-option-btn copy-link" id="shareCopyLink">
-            <span class="s-icon">🔗</span> نسخ الرابط
-        </button>
-        <button class="share-option-btn native" id="shareNative" style="display:none">
-            <span class="s-icon">📤</span> مشاركة
-        </button>
-    </div>
-    <button class="share-main-btn" id="shareMainBtn" aria-label="مشاركة الموقع" title="مشاركة الموقع">
-        ✦
-    </button>
-</div>
+<button class="share-btn-fixed" onclick="shareLink()" title="مشاركة الموقع">🔗</button>
 
-<!-- Toast رابط المشاركة -->
-<div class="link-copy-toast" id="linkCopyToast">✓ تم نسخ رابط الموقع</div>
-
-<!-- الشريط المتحرك السفلي -->
-<div class="marquee-wrapper bottom-bar">
-    <div class="marquee-content">
-        <span>اللهم ارزق صاحب هذا العمل الهداية والثبات، وبارك في رزقه، واجعل له من كل خير نصيباً.</span>
-        <span>اللهم ارزق صاحب هذا العمل الهداية والثبات، وبارك في رزقه، واجعل له من كل خير نصيباً.</span>
-        <span>اللهم ارزق صاحب هذا العمل الهداية والثبات، وبارك في رزقه، واجعل له من كل خير نصيباً.</span>
-        <span>اللهم ارزق صاحب هذا العمل الهداية والثبات، وبارك في رزقه، واجعل له من كل خير نصيباً.</span>
-    </div>
-</div>
-
-<footer>
-    صدقة جارية عني وعن والدي وعن أحبتي وعن المسلمين والمسلمات الأحياء منهم والأموات
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-<script defer>
-document.addEventListener('DOMContentLoaded', function () {
-    const TOTAL = 21;
-    const SITE_URL  = window.location.href;
-    const SITE_NAME = 'جوامع الدعاء من الكتاب والسنة';
-
-    /* ── الوضع الليلي ── */
-    const themeToggle = document.getElementById('theme-toggle');
-    const knob = themeToggle.querySelector('.knob');
-    const savedTheme = localStorage.getItem('dua-theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    knob.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-
-    themeToggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        knob.textContent = next === 'dark' ? '☀️' : '🌙';
-        localStorage.setItem('dua-theme', next);
-    });
-
-    /* ── السلايدر — تأثير "عمق وتلاشٍ" الفاخر ── */
-  const LAST_VISIT = localStorage.getItem('last-visit');
-const NOW = Date.now();
-
-let savedIndex = 0;
-
-if (LAST_VISIT && (NOW - LAST_VISIT < 1000 * 60 * 30)) {
-    // أقل من 30 دقيقة → كمل من نفس المكان
-    savedIndex = parseInt(localStorage.getItem('dua-slide-index') || '0', 10);
-} else {
-    // مدة طويلة → ابدأ من جديد
-    savedIndex = 0;
-}
-
-localStorage.setItem('last-visit', NOW);
-  const swiper = new Swiper('.mySwiper', {
-    initialSlide: savedIndex,
-    speed: 480,
-    grabCursor: true,
-    keyboard: { enabled: true },
-
-    direction: 'horizontal',
-    slidesPerView: 1,
-    spaceBetween: 20,
-    centeredSlides: true,
-
-    navigation: { 
-        nextEl: '#prevBtn',
-        prevEl: '#nextBtn'
-    },
-
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-    }
-});
-    function updateProgress() {
-        const idx = swiper.activeIndex;
-        localStorage.setItem('dua-slide-index', idx);
-        const pct = ((idx + 1) / TOTAL) * 100;
-        document.getElementById('progress-bar').style.width = pct + '%';
-
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        nextBtn.classList.toggle('swiper-button-disabled', idx >= TOTAL - 1);
-        prevBtn.classList.toggle('swiper-button-disabled', idx <= 0);
-    }
-
-    /* ── عداد التسبيح ── */
-    document.querySelectorAll('.swiper-slide[data-tasbih]').forEach(slide => {
-        const btn   = slide.querySelector('.tasbih-btn');
-        const count = btn.querySelector('.t-count');
-        const reset = slide.querySelector('.tasbih-reset');
-        const goal  = parseInt(slide.dataset.goal || '100', 10);
-        let n = 0;
-
-        btn.addEventListener('click', () => {
-            if (n < goal) {
-                n++;
-                count.textContent = n;
-                if (n === goal) {
-                    btn.style.background = 'linear-gradient(135deg,#2e7d32,#43a047)';
-                    count.textContent = '✓';
-                    btn.querySelector('.t-label').textContent = 'أحسنت!';
-                }
-            }
-        });
-
-        reset.addEventListener('click', () => {
-            n = 0;
-            count.textContent = '0';
-            btn.style.background = '';
-            btn.querySelector('.t-label').textContent = 'انقر للتسبيح';
-        });
-    });
-
-    /* ── نسخ الدعاء ── */
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const slide   = btn.closest('.swiper-slide');
-            const dua     = slide.querySelector('.dua-content').textContent.trim();
-            const source  = slide.querySelector('.dua-source').textContent.trim();
-            const cat     = slide.querySelector('.category-tag').textContent.trim();
-            const text    = `${cat}\n\n${dua}\n\n${source}`;
-            const tooltip = slide.querySelector('.copy-tooltip');
-
-            btn.disabled = true;
-
-            const showTooltip = () => {
-                tooltip.classList.add('show');
-                setTimeout(() => {
-                    tooltip.classList.remove('show');
-                    btn.disabled = false;
-                }, 1800);
-            };
-
-            navigator.clipboard.writeText(text).then(showTooltip).catch(() => {
-                const el = document.createElement('textarea');
-                el.value = text; el.style.position = 'fixed'; el.style.opacity = '0';
-                document.body.appendChild(el); el.select();
-                document.execCommand('copy');
-                document.body.removeChild(el);
-                showTooltip();
-            });
-        });
-    });
-
-    /* ── مشاركة واتساب (زر الشريحة) ── */
-    document.querySelectorAll('.wa-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const slide  = btn.closest('.swiper-slide');
-            const dua    = slide.querySelector('.dua-content').textContent.trim();
-            const source = slide.querySelector('.dua-source').textContent.trim();
-            const cat    = slide.querySelector('.category-tag').textContent.trim();
-            const msg    = `✨ ${cat}\n\n${dua}\n\n${source}\n\n📱 ${SITE_NAME}`;
-            window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
-        });
-    });
-
-    /* ── زر المشاركة الرئيسي العائم ── */
-    const shareMainBtn  = document.getElementById('shareMainBtn');
-    const shareOptions  = document.getElementById('shareOptions');
-    const shareBackdrop = document.getElementById('shareBackdrop');
-    const linkToast     = document.getElementById('linkCopyToast');
-
-    function toggleShare(open) {
-        shareOptions.classList.toggle('visible', open);
-        shareMainBtn.classList.toggle('open', open);
-        shareBackdrop.classList.toggle('active', open);
-    }
-    shareMainBtn.addEventListener('click', () => {
-        const isOpen = shareOptions.classList.contains('visible');
-        toggleShare(!isOpen);
-    });
-    shareBackdrop.addEventListener('click', () => toggleShare(false));
-
-    function siteShareMsg() {
-        return `✨ ${SITE_NAME}\n\nمجموعة من أجمع الأدعية من القرآن الكريم والسنة النبوية الصحيحة.\n\n🔗 ${SITE_URL}`;
-    }
-
-    document.getElementById('shareWa').addEventListener('click', () => {
-        window.open('https://wa.me/?text=' + encodeURIComponent(siteShareMsg()), '_blank');
-        toggleShare(false);
-    });
-
-    document.getElementById('shareTwitter').addEventListener('click', () => {
-        const tweet = `✨ ${SITE_NAME}\n\nمجموعة من أجمع الأدعية من الكتاب والسنة.\n${SITE_URL}`;
-        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweet), '_blank');
-        toggleShare(false);
-    });
-
-    document.getElementById('shareTelegram').addEventListener('click', () => {
-        const msg = encodeURIComponent(SITE_NAME + ' — أجمع الأدعية من الكتاب والسنة');
-        window.open(`https://t.me/share/url?url=${encodeURIComponent(SITE_URL)}&text=${msg}`, '_blank');
-        toggleShare(false);
-    });
-
-    document.getElementById('shareCopyLink').addEventListener('click', () => {
-        navigator.clipboard.writeText(SITE_URL).then(() => {
-            showLinkToast();
-        }).catch(() => {
-            const el = document.createElement('textarea');
-            el.value = SITE_URL; el.style.position='fixed'; el.style.opacity='0';
-            document.body.appendChild(el); el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            showLinkToast();
-        });
-        toggleShare(false);
-    });
-
-    function showLinkToast() {
-        linkToast.classList.add('show');
-        setTimeout(() => linkToast.classList.remove('show'), 2200);
-    }
-
-    const nativeBtn = document.getElementById('shareNative');
-    if (navigator.share) {
-        nativeBtn.style.display = 'flex';
-        nativeBtn.addEventListener('click', () => {
-            navigator.share({
-                title: SITE_NAME,
-                text:  'مجموعة من الأدعية من القرآن الكريم والسنة النبوية الصحيحة.',
-                url:   SITE_URL
-            }).catch(() => {});
-            toggleShare(false);
-        });
-    }
-
-});
-<div style="text-align: center; margin-top: 20px;">
-    <button onclick="shareLink()" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
-        انشر تؤجر (مشاركة الموقع)
-    </button>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-function shareLink() {
-    if (navigator.share) {
-        navigator.share({
-            title: 'موقع صدقة جارية',
-            text: 'أدعية من الكتاب والسنة النبوية - بدون إعلانات',
-            url: window.location.href
-        });
-    } else {
-        alert("انسخ الرابط وانشره: " + window.location.href);
+    // تهيئة السلايدر (Swiper)
+  // تهيئة السلايدر (Swiper) مع تفعيل التمرير الأفقي الكامل
+    const swiper = new Swiper(".mySwiper", {
+        loop: false,
+        speed: 600,
+        grabCursor: true,
+        rtl: true, // تفعيل دعم اللغة العربية من اليمين لليسار
+        mousewheel: true, // تفعيل التمرير بعجلة الفأرة
+        keyboard: { enabled: true }, // تفعيل التمرير بأسهم لوحة المفاتيح
+        navigation: { nextEl: "#nextBtn", prevEl: "#prevBtn" },
+        on: {
+            init: function () {
+                // تحديث شريط التقدم عند التشغيل لأول مرة
+                let progress = ((this.activeIndex + 1) / this.slides.length) * 100;
+                document.getElementById("progress-bar").style.width = progress + "%";
+            },
+            slideChange: function () {
+                let progress = ((this.activeIndex + 1) / this.slides.length) * 100;
+                document.getElementById("progress-bar").style.width = progress + "%";
+            }
+        }
+    });
+
+    // تبديل الوضع الليلي
+    const btn = document.getElementById("theme-toggle");
+    btn.onclick = () => {
+        const body = document.body;
+        if (body.getAttribute("data-theme") === "light") {
+            body.setAttribute("data-theme", "dark");
+            btn.innerHTML = "☀️";
+        } else {
+            body.setAttribute("data-theme", "light");
+            btn.innerHTML = "🌙";
+        }
+    };
+
+    // وظيفة المشاركة
+    function shareLink() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'صدقة جارية',
+                text: 'أدعية مستجابة من الكتاب والسنة',
+                url: window.location.href
+            });
+        } else {
+            alert("رابط الموقع: " + window.location.href);
+        }
     }
-}
 </script>
 </body>
 </html>
